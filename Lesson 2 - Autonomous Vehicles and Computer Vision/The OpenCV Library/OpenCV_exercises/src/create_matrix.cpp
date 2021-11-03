@@ -17,6 +17,7 @@ void createMatrix1()
     // Create a variable of type cv::Mat* named m3_8u which has three channels with a
     // depth of 8bit per channel. Then, set the first channel to 255 and display the result.
 
+    cv::Mat m3_8u(nrows, ncols, CV_8UC3,cv::Scalar(255,0,0));
 
     // show result
     string windowName = "First steps in OpenCV (m1_8u)";
@@ -26,7 +27,10 @@ void createMatrix1()
 
     // STUDENT TASK :
     // Display the results from the STUDENT TASK above
-
+    string windowNameStudenTask = "Studen Task";
+    cv::namedWindow(windowNameStudenTask,1);
+    cv::imshow(windowNameStudenTask, m3_8u);
+    cv::waitKey(0);
 }
 
 
