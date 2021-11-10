@@ -109,15 +109,19 @@ void clusterLidarWithROI(std::vector<BoundingBox> &boundingBoxes, std::vector<Li
             // check wether point is within current bounding box
             if (smallerBox.contains(pt))
             {
-                it2->lidarPoints.push_back(*it1);
-                lidarPoints.erase(it1);
-                it1--;
-                break;
+                // it2->lidarPoints.push_back(*it1);
+                // lidarPoints.erase(it1);
+                // it1--;
+                // break;
+                enclosingBoxes.push_back(it2);
             }
         } // eof loop over all bounding boxes
         
       // TODO - check wether point has been enclosed by one or by multiple boxes. 
       // Accordingly, add Lidar point to bounding box
+      if(enclosingBoxes.size() == 1){
+          enclosingBoxes[0]->lidarPoints.push_back(*it1);
+      }
 
     } // eof loop over all Lidar points
 }
@@ -135,7 +139,7 @@ int main()
     {
         if (it->lidarPoints.size() > 0)
         {
-            showLidarTopview(it->lidarPoints, cv::Size(10.0, 25.0), cv::Size(1000, 2000));
+            showLidarTopview(it->lidarPoints, cv::Size(10.0, 25.0), cv::Size(1000, 720));
         }
     }   
 
